@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="appPrueba.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="History" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Item.id, StringFormat = 'Identificación: {0}'}" FontSize="Medium" />
+            <Label Text="Nombre:" FontSize="Medium" />
+            <Entry Text="{Binding Item.name}" FontSize="Small"/>
+            <Label Text="Apellido:" FontSize="Medium" />
+            <Entry Text="{Binding Item.surname}" FontSize="Small"/>
+            <Label Text="Telefono:" FontSize="Small"/>
+            <Entry Text="{Binding Item.telephone}" FontSize="Small"/>
+            <Label Text="Dirección:" FontSize="Small"/>
+            <Entry Text="{Binding Item.address}" FontSize="Small"/>
+            <Label Text="Estado:" FontSize="Small"/>
+            <Picker
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                Title="Estado..."
+                ItemsSource="{Binding itemsStatus}"
+                SelectedItem="{Binding SelectedStatus}"
+                ItemDisplayBinding="{Binding Title}"
+                InputTransparent="False"/>
+            <Label Text="Observaciones" FontSize="Small"/>
+            <Editor Text="{Binding Item.observation}" HeightRequest="150" FontSize="Small"/>
+            <Button   
+                Command="{Binding SaveClient}"
+                Text="Actualizar"
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

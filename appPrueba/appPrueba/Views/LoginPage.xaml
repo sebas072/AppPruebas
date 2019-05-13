@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="appPrueba.Views.LoginPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout
+                Spacing="20"
+                Padding="8"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    Keyboard="Email"       
+                    Placeholder="Usuario"
+                    Text="{Binding User.email}">
+                </Entry>
+                <Entry           
+                    Placeholder="Contraseña"
+                    IsPassword="True"
+                    Text="{Binding User.Pass}">
+                </Entry>
+                <StackLayout Orientation="Horizontal">
+                    <Switch                       
+                        IsToggled="{Binding User.Remember}"    
+                        VerticalOptions="FillAndExpand" 
+                        HorizontalOptions="Start"
+                     />
+                    <Label
+                        Text="Recordarme"
+                        VerticalOptions="CenterAndExpand"/>
+                    <Button   
+                        Command="{Binding LoginIn}"
+                        Text="Ingresar"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

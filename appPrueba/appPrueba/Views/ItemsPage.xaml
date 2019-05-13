@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="appPrueba.Views.ItemsPage"
+             Title="{Binding Title}">
+    <StackLayout>
+        <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElementAndDataTemplate"
+                ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding img}"/>
+                            <StackLayout Padding="10" Grid.Column="1" Spacing="5">
+                                <StackLayout  Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding name, StringFormat = 'Nombre: {0}'}" 
+                                            LineBreakMode="NoWrap" 
+                                            FontSize="14" />
+                                        <Label Text="{Binding surname, StringFormat = 'Apellido: {0}'}" 
+                                            LineBreakMode="NoWrap"
+                                            FontSize="14" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding schProspectIdentification, StringFormat = 'Cedula: {0}'}" 
+                                            LineBreakMode="NoWrap" 
+                                            FontSize="14" />
+                                        <Label Text="{Binding telephone, StringFormat = 'Telefono: {0}'}" 
+                                            LineBreakMode="NoWrap"
+                                            FontSize="14" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
+</ContentPage>
