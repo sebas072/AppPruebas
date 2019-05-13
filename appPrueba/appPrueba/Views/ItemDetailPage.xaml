@@ -17,7 +17,7 @@
             <Label Text="Telefono:" FontSize="Small"/>
             <Entry Text="{Binding Item.telephone}" FontSize="Small"/>
             <Label Text="Dirección:" FontSize="Small"/>
-            <Entry Text="{Binding Item.address}" FontSize="Small"/>
+            <Entry Text="{Binding Item.address}"  FontSize="Small"/>
             <Label Text="Estado:" FontSize="Small"/>
             <Picker
                 VerticalOptions="Center"
@@ -28,7 +28,7 @@
                 ItemDisplayBinding="{Binding Title}"
                 InputTransparent="False"/>
             <Label Text="Observaciones" FontSize="Small"/>
-            <Editor Text="{Binding Item.observation}" HeightRequest="150" FontSize="Small"/>
+            <Editor Text="{Binding Item.observation}" HeightRequest="50" FontSize="Small"/>
             <Button   
                 Command="{Binding SaveClient}"
                 Text="Actualizar"

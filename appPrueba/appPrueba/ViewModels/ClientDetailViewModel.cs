@@ -43,12 +43,26 @@ namespace appPrueba.ViewModels
             this.Item = item;
             SelectedStatus = itemsStatus.FirstOrDefault(s=>s.Id == (StatusCode)item.statusCd);
             SaveClient = new Command(async () => {
-                Item.statusCd = (int)SelectedStatus.Id;
-                await SaveAuditoria();
-                await DataStore.UpdateItemAsync(Item);
-                await Navigation.PopToRootAsync();
+                if (await ValidateCampos())
+                {
+                    Item.statusCd = (int)SelectedStatus.Id;
+                    await SaveAuditoria();
+                    await DataStore.UpdateItemAsync(Item);
+                    await Navigation.PopToRootAsync();
+
+                }
             });
         }
+        private async Task<bool> ValidateCampos()
+        {
+            if (string.IsNullOrEmpty(Item.name) || string.IsNullOrEmpty(Item.surname) || string.IsNullOrEmpty(Item.telephone) || string.IsNullOrEmpty(Item.address) || string.IsNullOrEmpty(Item.observation))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Todos los campos son obligatorios", "OK");
+                return await Task.FromResult(false);
+            }
+            return await Task.FromResult(true);
+        }
+
         private async Task SaveAuditoria()
         {
             IDataStore<Log> da = DependencyService.Get<IDataStore<Log>>() ?? new LogDataStore();
